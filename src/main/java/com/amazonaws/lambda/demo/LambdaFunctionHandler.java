@@ -17,10 +17,12 @@ public class LambdaFunctionHandler implements RequestHandler<Map<String, Object>
        LexRequest lexRequest = (LexRequest) LexRequestFactory.createLexRequest(input);
        //service call
        LambdaLogger logger = context.getLogger();
-       String aemOutput = callAEMServicefor(lexRequest.getBotName(), logger);
+       String responseToLex = callAEMServicefor(lexRequest.getBotName(), logger);
           
-       Message message = new Message("PlainText",aemOutput);
-       DialogAction dialogAction = new DialogAction("Close","Fulfilled",message);
+       Message message = new Message("PlainText",responseToLex);
+       Slots slots = new Slots("simple click","online","Thanks");
+       DialogAction dialogAction = new DialogAction("ElicitSlot",message,"SecondIntent",slots,"intendedcard");
+      // DialogAction dialogAction = new DialogAction("ElicitIntent",message);
        return new LexResponse(dialogAction);
     }
     
@@ -41,8 +43,9 @@ public class LambdaFunctionHandler implements RequestHandler<Map<String, Object>
                         String s = (String)cardArray.getJSONObject(i).get("product_name");
                         creditCards.append(s).append(",");
         }
-        logger.log("Available Credit Cards:: " +  creditCards.toString());
-        return serviceresponse;
+        String responseToLex = "Great, here are some very good offers for you -  " +  creditCards.toString();
+        logger.log(responseToLex);
+        return responseToLex;
 }
 
     

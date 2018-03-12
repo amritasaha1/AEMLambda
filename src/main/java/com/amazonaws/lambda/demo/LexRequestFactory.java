@@ -12,9 +12,18 @@ public class LexRequestFactory {
         LexRequest lexRequest = new LexRequest();
         lexRequest.setBotName(botName);
         Map<String,Object> currentIntent = (Map<String,Object>) input.get("currentIntent");
+        System.out.println(botMap.keySet().toString());
+        System.out.println(currentIntent.keySet().toString());
+        for (String key : currentIntent.keySet()) {
+            System.out.println(key + " -- " + currentIntent.get(key));
+        }
+        //Map<String,Object> slotDetails = (Map<String,Object>) input.get("slotDetails");
+        //System.out.println(slotDetails.keySet().toString());
        //lexRequest.setIntentName(currentIntent.toString());
-        lexRequest.setRequestedFeature((String) input.get("feature"));
-        lexRequest.setStatedCreditScore((String)input.get("score"));
+        lexRequest.setCreditcard((String) input.get("creditcard"));
+        lexRequest.setAgreetoanswer((String)input.get("agreetoanswer"));
+        lexRequest.setRequestedFeature((String) input.get("featureintent"));
+        lexRequest.setStatedCreditScore((String)input.get("userscore"));
         return lexRequest;
     }
 }
