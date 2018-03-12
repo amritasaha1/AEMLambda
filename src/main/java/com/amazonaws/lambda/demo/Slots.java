@@ -2,39 +2,54 @@ package com.amazonaws.lambda.demo;
 
 public class Slots {
 	
-	private String intendedcard;
-	private String mointent;
-	private String endStmt;
+	//private String intendedcard;
+	private String agreetoanswer;
+	private String userscore;
+	private String creditcard;
+	private String featureintent;
 	     
-	public Slots(String intendedcard, String mointent, String endStmt) {
-		this.intendedcard = intendedcard;
-		this.mointent = mointent;
-		this.endStmt = endStmt;
+	public Slots(String agreetoanswer, String userscore,String creditcard, String featureintent) {
+		//this.intendedcard = intendedcard;
+		this.agreetoanswer = agreetoanswer;
+		this.userscore = userscore;
+		this.creditcard = creditcard;
+		this.featureintent = featureintent;
 	}
 
-	public String getIntendedcard() {
-		return intendedcard;
+
+	public String getAgreetoanswer() {
+		return agreetoanswer;
 	}
 
-	public void setIntendedcard(String intendedcard) {
-		this.intendedcard = intendedcard;
+	public void setAgreetoanswer(String agreetoanswer) {
+		this.agreetoanswer = agreetoanswer;
 	}
 
-	public String getMointent() {
-		return mointent;
+	public String getUserscore() {
+		return userscore;
 	}
 
-	public void setMointent(String mointent) {
-		this.mointent = mointent;
+	public void setUserscore(String userscore) {
+		this.userscore = userscore;
 	}
 
-	public String getEndStmt() {
-		return endStmt;
+	public String getCreditcard() {
+		return creditcard;
 	}
 
-	public void setEndStmt(String endStmt) {
-		this.endStmt = endStmt;
+	public void setCreditcard(String creditcard) {
+		this.creditcard = creditcard;
 	}
+
+	public String getFeatureintent() {
+		return featureintent;
+	}
+
+	public void setFeatureintent(String featureintent) {
+		this.featureintent = featureintent;
+	}
+
+   
 	
 	
 	

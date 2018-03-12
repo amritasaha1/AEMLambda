@@ -4,6 +4,7 @@ public class DialogAction {
     private String type;
     private String fulfillmentState;
     private String intentName;
+    private ResponseCard responseCard;
     private Slots slots;
     private Message message;
     private String elicitIntent;
@@ -20,23 +21,33 @@ public class DialogAction {
         public static final String Failed = "Failed";
     }
     
-    public DialogAction(String type,Message message) {
+    public DialogAction(String type,String fulfillmentState,Message message) {
 
         this.type = type;
+        this.fulfillmentState = fulfillmentState;
         this.message = message;
     }
 
-    public DialogAction(String type,Message message,String intentName,Slots slots, String slotToElicit) {
+    public DialogAction(String type,Message message,String intentName,ResponseCard responseCard ,Slots slots, String slotToElicit) {
 
         this.type = type;
         this.fulfillmentState = fulfillmentState;
         this.intentName = intentName;
+        this.responseCard = responseCard;
         this.slots = slots;
         this.message = message;
         this.slotToElicit = slotToElicit;
     }
+    
+    public ResponseCard getResponseCard() {
+		return responseCard;
+	}
 
-    public DialogAction() {
+	public void setResponseCard(ResponseCard responseCard) {
+		this.responseCard = responseCard;
+	}
+
+	public DialogAction() {
     }
 
     public String getType() {
