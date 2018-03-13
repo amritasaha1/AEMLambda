@@ -14,70 +14,74 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 
 public class LambdaFunctionHandler implements RequestHandler<Map<String, Object>, Object> {
 
-    @Override
+	@Override
     public Object handleRequest(Map<String,Object> input, Context context) {
        LexRequest lexRequest = (LexRequest) LexRequestFactory.createLexRequest(input);
+       DialogAction dialogAction;   
        //service call
        LambdaLogger logger = context.getLogger();
        String responseToLex = callAEMServicefor(lexRequest.getBotName(), logger);
+       String responseToLexMsg = "Great! Here are some good options for you -"+responseToLex+ "; What type of card would you like to choose?";
        ResponseCard responseCard = processResponse(responseToLex);
-          
-       Message message = new Message("PlainText","What type of card would you like to choose?");
-       Slots slots = new Slots("null","null","null","null");
-       //DialogAction dialogAction = new DialogAction("ElicitSlot",message,"FirstCreditIntent",responseCard, slots,"agreetoanswer");
-       responseToLex = "Great! Here are some good options for you -"+responseToLex;
-       DialogAction dialogAction = new DialogAction("Close","Fulfilled",new Message("PlainText",responseToLex));
+       Message message = new Message("PlainText",responseToLexMsg);
+       Slots slots = new Slots("null","null","null","null","null","null","null");
+       if (lexRequest.getUsercardintent() == null) {
+       dialogAction = new DialogAction("ElicitIntent",message);
+       //dialogAction = new DialogAction("ElicitSlot",message,"CreditIntent",responseCard, slots,"usercardintent");
+       //responseToLex = "Great! Here are some good options for you -"+responseToLex;
+       //DialogAction dialogAction = new DialogAction("Close","Fulfilled",new Message("PlainText",responseToLex));
+       }else {
+    	dialogAction = new DialogAction("Close","Fulfilled",new Message("PlainText","We know your card intent"));
+       }
        return new LexResponse(dialogAction);
     }
-    
-    private ResponseCard processResponse(String responseFrmAEM) {
-    	       
-        String[] cards = responseFrmAEM.split(",");
-        List<String> cardList = Arrays.asList(cards);
-        System.out.println(cardList);
-        System.out.println(cards);
-        Button buttonArray[] = new Button[3];
-        Button button = null;
-        for(int i = 0; i< cards.length; i++){
-        	System.out.println("card from AEMS Array --- ");
-        	System.out.println(cards[i]);
-        	button = new Button(cards[i],cards[i]);
-        	buttonArray[i] = button;
-       	}
-        System.out.println("buttonArray --- ");
-        System.out.println(buttonArray);
-        
-        Attachment attachmentArray[] = new Attachment[1];
-        attachmentArray[0] = new Attachment(buttonArray,"What type of card would you like to choose?", "Select the Card");
-    	ResponseCard responseCard = new ResponseCard(attachmentArray,1,"application/vnd.amazonaws.card.generic");
-  	
-    	return responseCard;
-    	
-    }
-    
-    
-    private String callAEMServicefor(String userInput, LambdaLogger logger) {
-        System.out.println("You are here in service called method.....");
-        String serviceresponse = "This is mock service response....";
-        BasicAuthRestTemplate restTemplate = new BasicAuthRestTemplate("summituser", "abcd");
-        ResponseEntity<String> jsonresult = restTemplate.getForEntity("http://54.195.246.137/bin/trainingServlet?query=cards", String.class);
-        JSONObject jsonAEMResponse = new JSONObject(jsonresult);
-        //logger.log("Full response details:: " + jsonAEMResponse.toString());
-        String responseBody = (String)jsonAEMResponse.get("body");                    
-        JSONObject responseJSON = new JSONObject(responseBody);
-        serviceresponse = responseJSON.toString();
-        JSONArray cardArray = (JSONArray)responseJSON.get("creditcards");
-        StringBuffer creditCards = new StringBuffer();
-        for(int i=0;i<cardArray.length();i++) {
-                        String s = (String)cardArray.getJSONObject(i).get("product_name");
-                        creditCards.append(s).append(",");
-        }
-        String responseToLex = creditCards.toString();
-        logger.log(responseToLex);
-        return responseToLex;
-}
 
-    
-    
+	private ResponseCard processResponse(String responseFrmAEM) {
+
+		String[] cards = responseFrmAEM.split(",");
+		List<String> cardList = Arrays.asList(cards);
+		System.out.println(cardList);
+		System.out.println(cards);
+		Button buttonArray[] = new Button[3];
+		Button button = null;
+		for (int i = 0; i < cards.length; i++) {
+			System.out.println("card from AEMS Array --- ");
+			System.out.println(cards[i]);
+			button = new Button(cards[i], cards[i]);
+			buttonArray[i] = button;
+		}
+		System.out.println("buttonArray --- ");
+		System.out.println(buttonArray);
+
+		Attachment attachmentArray[] = new Attachment[1];
+		attachmentArray[0] = new Attachment(buttonArray, "What type of card would you like to choose?",
+				"Select the Card");
+		ResponseCard responseCard = new ResponseCard(attachmentArray, 1, "application/vnd.amazonaws.card.generic");
+
+		return responseCard;
+
+	}
+
+	private String callAEMServicefor(String userInput, LambdaLogger logger) {
+		System.out.println("You are here in service called method.....");
+		String serviceresponse = "This is mock service response....";
+		BasicAuthRestTemplate restTemplate = new BasicAuthRestTemplate("summituser", "abcd");
+		ResponseEntity<String> jsonresult = restTemplate
+				.getForEntity("http://54.195.246.137/bin/trainingServlet?query=cards", String.class);
+		JSONObject jsonAEMResponse = new JSONObject(jsonresult);
+		// logger.log("Full response details:: " + jsonAEMResponse.toString());
+		String responseBody = (String) jsonAEMResponse.get("body");
+		JSONObject responseJSON = new JSONObject(responseBody);
+		serviceresponse = responseJSON.toString();
+		JSONArray cardArray = (JSONArray) responseJSON.get("creditcards");
+		StringBuffer creditCards = new StringBuffer();
+		for (int i = 0; i < cardArray.length(); i++) {
+			String s = (String) cardArray.getJSONObject(i).get("product_name");
+			creditCards.append(s).append(",");
+		}
+		String responseToLex = creditCards.toString();
+		logger.log(responseToLex);
+		return responseToLex;
+	}
 
 }

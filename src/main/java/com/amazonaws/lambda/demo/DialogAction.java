@@ -21,6 +21,12 @@ public class DialogAction {
         public static final String Failed = "Failed";
     }
     
+    public DialogAction(String type,Message message) {
+
+        this.type = type;
+        this.message = message;
+    }
+    
     public DialogAction(String type,String fulfillmentState,Message message) {
 
         this.type = type;

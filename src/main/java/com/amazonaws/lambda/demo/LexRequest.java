@@ -4,11 +4,34 @@ public class LexRequest {
 	
     private String botName;
     private String intentName;
-    private String requestedFeature;
-    private String statedCreditScore;
-	private String creditcard;
-	private String agreetoanswer;
+    private String score;
+    private String type;
+	private String credit;
+	private String feature;
+	private String thanks;
+	private String filltypeintent;
+	private String usercardintent;
+	
+	
     
+	public String getThanks() {
+		return thanks;
+	}
+	public void setThanks(String thanks) {
+		this.thanks = thanks;
+	}
+	public String getFilltypeintent() {
+		return filltypeintent;
+	}
+	public void setFilltypeintent(String filltypeintent) {
+		this.filltypeintent = filltypeintent;
+	}
+	public String getUsercardintent() {
+		return usercardintent;
+	}
+	public void setUsercardintent(String usercardintent) {
+		this.usercardintent = usercardintent;
+	}
 	public String getBotName() {
 		return botName;
 	}
@@ -21,29 +44,30 @@ public class LexRequest {
 	public void setIntentName(String intentName) {
 		this.intentName = intentName;
 	}
-	public String getRequestedFeature() {
-		return requestedFeature;
+	public String getScore() {
+		return score;
 	}
-	public void setRequestedFeature(String requestedFeature) {
-		this.requestedFeature = requestedFeature;
+	public void setScore(String score) {
+		this.score = score;
 	}
-	public String getStatedCreditScore() {
-		return statedCreditScore;
+	public String getType() {
+		return type;
 	}
-	public void setStatedCreditScore(String statedCreditScore) {
-		this.statedCreditScore = statedCreditScore;
+	public void setType(String type) {
+		this.type = type;
 	}
-	public String getCreditcard() {
-		return creditcard;
+	public String getCredit() {
+		return credit;
 	}
-	public void setCreditcard(String creditcard) {
-		this.creditcard = creditcard;
+	public void setCredit(String credit) {
+		this.credit = credit;
 	}
-	public String getAgreetoanswer() {
-		return agreetoanswer;
+	public String getFeature() {
+		return feature;
 	}
-	public void setAgreetoanswer(String agreetoanswer) {
-		this.agreetoanswer = agreetoanswer;
+	public void setFeature(String feature) {
+		this.feature = feature;
 	}
+
 	
 }
