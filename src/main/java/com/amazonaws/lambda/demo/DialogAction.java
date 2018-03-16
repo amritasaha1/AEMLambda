@@ -21,10 +21,87 @@ public class DialogAction {
         public static final String Failed = "Failed";
     }
     
-    public DialogAction(String type,Message message) {
+    public DialogAction(String type,Slots slots) {
+
+        this.type = type;
+        this.slots = slots;
+    }
+    
+    /**
+     * 
+     * @param type
+     * @param intentName
+     * @param slots
+     * @param slotToElicit
+     */
+    public DialogAction(String type,String intentName,Slots slots, String slotToElicit) {
+
+        this.type = type;
+        this.intentName = intentName;
+        this.slots = slots;
+        this.slotToElicit = slotToElicit;
+        //this.responseCard = responseCard;
+        //this.message = message;
+    }
+    
+    /**
+     * 
+     * @param type
+     * @param intentName
+     * @param slots
+     * @param slotToElicit
+     * @param responseCard
+     * @param message
+     */
+    public DialogAction(String type,String intentName,Slots slots, String slotToElicit, ResponseCard responseCard, Message message) {
+
+        this.type = type;
+        this.intentName = intentName;
+        this.slots = slots;
+        this.slotToElicit = slotToElicit;
+        this.responseCard = responseCard;
+        this.message = message;
+    }
+    
+    /**
+     * 
+     * @param type
+     * @param intentName
+     * @param slots
+     * @param slotToElicit
+     * @param message
+     */
+    public DialogAction(String type,String intentName,Slots slots, String slotToElicit, Message message) {
+
+        this.type = type;
+        this.intentName = intentName;
+        this.slots = slots;
+        this.slotToElicit = slotToElicit;
+        this.message = message;
+    }
+    
+    /**
+     * 
+     * @param type
+     * @param intentName
+     * @param slots
+     * @param slotToElicit
+     * @param responseCard
+     */
+    public DialogAction(String type,String intentName,Slots slots, String slotToElicit, ResponseCard responseCard) {
+
+        this.type = type;
+        this.intentName = intentName;
+        this.slots = slots;
+        this.slotToElicit = slotToElicit;
+        this.responseCard = responseCard;
+    }
+    
+    public DialogAction(String type,Message message, ResponseCard responseCard) {
 
         this.type = type;
         this.message = message;
+        this.responseCard = responseCard;
     }
     
     public DialogAction(String type,String fulfillmentState,Message message) {

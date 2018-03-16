@@ -2,18 +2,52 @@ package com.amazonaws.lambda.demo;
 
 public class LexRequest {
 	
-    private String botName;
+	private String botName;
     private String intentName;
-    private String score;
-    private String type;
-	private String credit;
-	private String feature;
+	private String creditcard;
+    private String agreetoanswer;
+	private String userscore;
+	private String featureintent;
 	private String thanks;
 	private String filltypeintent;
 	private String usercardintent;
 	
-	
-    
+	public String getBotName() {
+		return botName;
+	}
+	public void setBotName(String botName) {
+		this.botName = botName;
+	}
+	public String getIntentName() {
+		return intentName;
+	}
+	public void setIntentName(String intentName) {
+		this.intentName = intentName;
+	}
+	public String getCreditcard() {
+		return creditcard;
+	}
+	public void setCreditcard(String creditcard) {
+		this.creditcard = creditcard;
+	}
+	public String getAgreetoanswer() {
+		return agreetoanswer;
+	}
+	public void setAgreetoanswer(String agreetoanswer) {
+		this.agreetoanswer = agreetoanswer;
+	}
+	public String getUserscore() {
+		return userscore;
+	}
+	public void setUserscore(String userscore) {
+		this.userscore = userscore;
+	}
+	public String getFeatureintent() {
+		return featureintent;
+	}
+	public void setFeatureintent(String featureintent) {
+		this.featureintent = featureintent;
+	}
 	public String getThanks() {
 		return thanks;
 	}
@@ -32,42 +66,9 @@ public class LexRequest {
 	public void setUsercardintent(String usercardintent) {
 		this.usercardintent = usercardintent;
 	}
-	public String getBotName() {
-		return botName;
-	}
-	public void setBotName(String botName) {
-		this.botName = botName;
-	}
-	public String getIntentName() {
-		return intentName;
-	}
-	public void setIntentName(String intentName) {
-		this.intentName = intentName;
-	}
-	public String getScore() {
-		return score;
-	}
-	public void setScore(String score) {
-		this.score = score;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public String getCredit() {
-		return credit;
-	}
-	public void setCredit(String credit) {
-		this.credit = credit;
-	}
-	public String getFeature() {
-		return feature;
-	}
-	public void setFeature(String feature) {
-		this.feature = feature;
-	}
-
+	
+	
+    
+	
 	
 }

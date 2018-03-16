@@ -2,82 +2,68 @@ package com.amazonaws.lambda.demo;
 
 public class Slots {
 	
-	private String usercardintent;
-    private String score;
-    private String type;
-	private String credit;
-	private String feature;
+	private String creditcard;
+    private String agreetoanswer;
+	private String userscore;
+	private String featureintent;
 	private String thanks;
 	private String filltypeintent;
+	private String usercardintent;
+		
 	
-	
-	public Slots(String usercardintent, String score, String type, String credit, String feature, String thanks, String filltypeintent) {
-		this.usercardintent = usercardintent;
-		this.score = score;
-		this.type = type;
-		this.credit = credit;
-		this.feature = feature;
+	public Slots(String creditcard, String agreetoanswer, String userscore, String featureintent, String thanks,
+			 String usercardintent,String filltypeintent) {
+		this.creditcard = creditcard;
+		this.agreetoanswer = agreetoanswer;
+		this.userscore = userscore;
+		this.featureintent = featureintent;
 		this.thanks = thanks;
+		this.usercardintent = usercardintent;
 		this.filltypeintent = filltypeintent;
 	}
-	
-	
+	public String getCreditcard() {
+		return creditcard;
+	}
+	public void setCreditcard(String creditcard) {
+		this.creditcard = creditcard;
+	}
+	public String getAgreetoanswer() {
+		return agreetoanswer;
+	}
+	public void setAgreetoanswer(String agreetoanswer) {
+		this.agreetoanswer = agreetoanswer;
+	}
+	public String getUserscore() {
+		return userscore;
+	}
+	public void setUserscore(String userscore) {
+		this.userscore = userscore;
+	}
+	public String getFeatureintent() {
+		return featureintent;
+	}
+	public void setFeatureintent(String featureintent) {
+		this.featureintent = featureintent;
+	}
 	public String getThanks() {
 		return thanks;
 	}
-
 	public void setThanks(String thanks) {
 		this.thanks = thanks;
 	}
 
-	public String getFilltypeintent() {
-		return filltypeintent;
-	}
-
-	public void setFilltypeintent(String filltypeintent) {
-		this.filltypeintent = filltypeintent;
-	}
-
-
-
 	public String getUsercardintent() {
 		return usercardintent;
 	}
-
 	public void setUsercardintent(String usercardintent) {
 		this.usercardintent = usercardintent;
 	}
-
-	public String getScore() {
-		return score;
+	public String getFilltypeintent() {
+		return filltypeintent;
 	}
-
-	public void setScore(String score) {
-		this.score = score;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getCredit() {
-		return credit;
-	}
-
-	public void setCredit(String credit) {
-		this.credit = credit;
-	}
-
-	public String getFeature() {
-		return feature;
-	}
-
-	public void setFeature(String feature) {
-		this.feature = feature;
+	public void setFilltypeintent(String filltypeintent) {
+		this.filltypeintent = filltypeintent;
 	}
 	
+
 }
