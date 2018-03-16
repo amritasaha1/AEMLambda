@@ -5,7 +5,7 @@ public class Attachment {
     private Button[] buttons;
     private String subTitle;
     private String title;
-    
+
 	public Attachment(Button[] buttons, String subTitle, String title) {
 		this.buttons = buttons;
 		this.subTitle = subTitle;
@@ -30,4 +30,6 @@ public class Attachment {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	
 }
